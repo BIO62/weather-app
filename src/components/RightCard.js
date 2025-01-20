@@ -21,33 +21,46 @@ export const RightCard = ({ weatherLoading, weather }) => {
     }
   };
   return (
-    <div className="absolute w-[414px] h-[828px] rounded-[48px] z-20 w-103 h-207 rounded-10.5 overflow-hidden bg-[#111827]/75 backdrop-blur-md flex flex-col items-center justify-between p-8 shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      {weatherLoading ? (
-        <p>Weather Loading...</p>
-      ) : (
-        <>
-          <div className="">
-            <p className="text-gray-300">{weather.date}</p>
-            <h1 className="h-12 text-5xl font-extrabold text-white">
-              {weather.region}
-            </h1>
-          </div>
+    <>
+      <div className="absolute w-[414px] h-[828px] rounded-[48px] z-20 w-103 h-207 rounded-10.5 overflow-hidden bg-[#111827]/75 backdrop-blur-md flex flex-col items-center justify-between p-8 shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        {weatherLoading ? (
+          <p>Weather Loading...</p>
+        ) : (
+          <>
+            <div className="">
+              <p className="text-gray-300">{weather.date}</p>
+              <h1 className="h-12 text-5xl font-extrabold text-white">
+                {weather.region}
+              </h1>
+            </div>
 
+            <img
+              src={getDayWeatherIcon(weather?.condition)}
+              alt={weather?.condition || "Default weather"}
+            />
+
+            <div className="text-center">
+              <p className="text-transparent bg-clip-text font-extrabold text-[110px] -mt-10 bg-gradient-to-b from-white to-black">
+                {weather.min_c}°
+              </p>
+              <p className="text-lg text-purple-600 mt-2">
+                {weather.condition}
+              </p>
+            </div>
+
+            <div className="flex justify-between w-full px-8"></div>
+          </>
+        )}
+      </div>
+      <div className="absolute w-[414px] h-[828px">
+        <div className="absolute bottom-[-450px] right-[-75px] ">
           <img
-            src={getDayWeatherIcon(weather?.condition)}
-            alt={weather?.condition || "Default weather"}
+            src={"/image/blueicon.png"}
+            alt="blueicon"
+            className="w-[176px] h-[176px]"
           />
-
-          <div className="text-center">
-            <p className="text-transparent bg-clip-text font-extrabold text-[110px] -mt-10 bg-gradient-to-b from-white to-black">
-              {weather.min_c}°
-            </p>
-            <p className="text-lg text-purple-600 mt-2">{weather.condition}</p>
-          </div>
-
-          <div className="flex justify-between w-full px-8"></div>
-        </>
-      )}
-    </div>
+        </div>
+      </div>
+    </>
   );
 };
